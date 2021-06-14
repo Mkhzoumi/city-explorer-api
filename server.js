@@ -10,12 +10,12 @@ require('dotenv').config();
 const port = process.env.PORT;
 // a server endpoint 
 app.get('/', // our endpoint name
- function (req, res) { // callback function of what we should do with our request
-  res.send('Hello') // our endpoint function response
-})
+    function (req, res) { // callback function of what we should do with our request
+        res.send('Hello') // our endpoint function response
+    })
 app.get('/data', // our endpoint name
- function (req, res) { // callback function of what we should do with our request
-  res.json(data) // our endpoint function response
-})
- 
+    function (req, res) { // callback function of what we should do with our request
+        res.json(data) // our endpoint function response
+    })
+
 app.listen(port) // kick start the express server to work
