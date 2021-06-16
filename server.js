@@ -25,8 +25,6 @@ app.get('/data', // our endpoint name
         let lat= req.query.lat;
         let lon = req.query.lon;
         if (lat && lon) {
-            
-        
         axios.get(`${weatherSite}?key=${weatherKey}&lat=${lat}&lon=${lon}`).then(response=>{
             const responseData=response.data.data.map(obj => new Weather(obj));
             res.json(responseData)
@@ -36,6 +34,26 @@ app.get('/data', // our endpoint name
         res.send('please provide a valid lat and lon')
     }
     });
+    https://api.themoviedb.org/3/search/movie?api_key=86000d239fba2dcd29db5b8d6500c330&query=amman
+
+
+    
+app.get('/movies', // our endpoint name
+function (req, res) { // callback function of what we should do with our request
+    let city= req.query.query;
+    if (city) {
+    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=86000d239fba2dcd29db5b8d6500c330&query=${city}`).then(response=>{
+        const responseData=response.data.results.map(obj => new Movies(obj));
+        res.json(responseData)
+    }).catch(error=>{res.send(error.message)});
+    // res.json(data) // our endpoint function response
+}else {
+    res.send('please provide a valid lat and lon')
+}
+});
+
+
+
 
 
     class Weather{
@@ -46,4 +64,19 @@ app.get('/data', // our endpoint name
         }
     }
 
-app.listen(port) // kick start the express server to work
+
+    class Movies{
+        constructor(obj){
+            this.title=obj.title;
+            this.overview=obj.overview;
+            this.avera_gevote=obj.vote_average;
+            this.popularity=obj.popularity;
+            this.release_date=obj.release_date;
+        }
+    }
+
+
+
+
+
+app.listen(8090) // kick start the express server to work
