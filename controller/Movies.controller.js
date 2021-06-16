@@ -10,6 +10,7 @@ const movies = (req, res) =>{ // callback function of what we should do with our
     axios.get(`${movieSite}?api_key=${movieKey}&query=${city}`).then(response=>{
         const responseData=response.data.results.map(obj => new Movies(obj));
         res.json(responseData)
+        
     }).catch(error=>{res.send(error.message)});
     // res.json(data) // our endpoint function response
 }else {
