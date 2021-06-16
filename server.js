@@ -2,11 +2,13 @@
 const express = require('express') // require the express package
 const app = express() // initialize your express app instance
 const cors = require('cors');
-require('dotenv').config();
-const weatherKey= process.env.WEATHER_API_KEY;
-
 const axios = require('axios');
+require('dotenv').config();
+const port = process.env.PORT;
+const weatherKey= process.env.WEATHER_API_KEY;
 const weatherSite = process.env.WEATHER_SITE;
+const movieSite = process.env.MOVIES_SITE;
+const movieKey= process.env.MOVIES_KEY;
 
 app.use(cors()) // after you initialize your express app instance
 
@@ -40,7 +42,7 @@ app.get('/movies', // our endpoint name
 function (req, res) { // callback function of what we should do with our request
     let city= req.query.query;
     if (city) {
-    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=86000d239fba2dcd29db5b8d6500c330&query=${city}`).then(response=>{
+    axios.get(`${movieSite}?api_key=${movieKey}&query=${city}`).then(response=>{
         const responseData=response.data.results.map(obj => new Movies(obj));
         res.json(responseData)
     }).catch(error=>{res.send(error.message)});
@@ -77,4 +79,4 @@ function (req, res) { // callback function of what we should do with our request
 
 
 
-app.listen(3030) // kick start the express server to work
+app.listen(port) // kick start the express server to work
