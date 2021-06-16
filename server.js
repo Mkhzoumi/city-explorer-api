@@ -34,7 +34,6 @@ app.get('/data', // our endpoint name
         res.send('please provide a valid lat and lon')
     }
     });
-    https://api.themoviedb.org/3/search/movie?api_key=86000d239fba2dcd29db5b8d6500c330&query=amman
 
 
     
