@@ -4,7 +4,6 @@ const app = express() // initialize your express app instance
 const cors = require('cors');
 require('dotenv').config();
 const weatherKey= process.env.WEATHER_API_KEY;
-const port = process.env.PORT;
 
 const axios = require('axios');
 const weatherSite = process.env.WEATHER_SITE;
@@ -78,4 +77,4 @@ function (req, res) { // callback function of what we should do with our request
 
 
 
-app.listen(8090) // kick start the express server to work
+app.listen(3030) // kick start the express server to work
